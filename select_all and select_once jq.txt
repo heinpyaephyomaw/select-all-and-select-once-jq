@@ -1,0 +1,76 @@
+<script>
+                $(document).on("click","#select_all_products",function() {
+                    if($(this).is(':checked',true)){
+                        $(".checkbox").prop('checked', true);
+                        var idsArr = [];
+                        $(".checkbox:checked").each(function() {
+                            idsArr.push($(this).attr('data-id'));
+                        });
+                        $(".productActionContainer").fadeIn();
+                    } else {
+                        $(".checkbox").prop('checked',false);
+                        $(".productActionContainer").fadeOut();
+                    }
+                    
+                    if($('.checkbox').prop('checked') == true){
+                        $('.checkbox').parent().addClass('active');
+                    }else{
+                        $('.checkbox').parent().removeClass('active');
+                    }
+
+                    console.log(idsArr);
+                });
+            </script>
+            <script>
+                $(document).on("click", ".checkbox", function() {
+                    var idsArr = [];
+                    $(".checkbox:checked").each(function() {
+                        idsArr.push($(this).attr('data-id'));
+                    });
+
+                    console.log(idsArr);
+                    if (idsArr.length > 0) {
+                        $(".productActionContainer").fadeIn();
+                    } else {
+                        $(".productActionContainer").fadeOut();
+                    }
+
+                    if($('.checkbox:checked').length == $('.checkbox').length){
+                        $('#select_all_products').prop('checked',true);
+                    }else{
+                        $('#select_all_products').prop('checked',false);
+                    }
+                    const eachCheckboxChecked = $(this).prop('checked') == true;
+                    if(eachCheckboxChecked){
+                        $(this).parent().addClass('active');
+                    }else{
+                        $(this).parent().removeClass('active');
+                    }
+
+                });
+
+            </script>
+
+            <script>
+                let percent_price = document.getElementById("percent_price");
+                let amount_price = document.getElementById("amount_price");
+                const paymentStatus = e => {
+                    let selectValue = e.value;
+                    if (e.value === "amount") {
+                        amount_price.classList.remove('switch_payment_state_hide');
+                        percent_price.classList.add('switch_payment_state_hide')
+                    } else if (e.value === "percentage") {
+                        percent_price.classList.remove('switch_payment_state_hide');
+                        amount_price.classList.add('switch_payment_state_hide');
+                    } else {
+                        console.log("error");
+                    }
+                }
+            </script>
+            <script>
+                $("#dropper-default").dateDropper({
+                    dropWidth: 200,
+                    dropPrimaryColor: "#1abc9c",
+                    dropBorder: "1px solid #1abc9c"
+                });
+            </script>
